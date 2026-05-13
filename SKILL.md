@@ -22,6 +22,16 @@ Use this skill to turn a thesis-defense PPT into a formal, presentation-ready de
 - Prefer formal academic assertion lines over conversational explanations.
 - When adding literature review content, include representative sources, what each research stream concludes, and how the thesis inherits or addresses the gap.
 
+## General PPT Production Rules
+
+- Make every slide serve one communicative purpose: background, gap, method, evidence, result, case, or conclusion. If a slide only stores backup information, integrate the evidence into the main flow or remove it.
+- Use slide titles as the audience's route map. Prefer "总标题：小标题" for long sections, for example "实验验证：评分信度检验", so the section and local claim are both visible.
+- Do not put speaker-script sentences into the slide body. Slides should show claims, evidence, diagrams, tables, or concise labels; detailed explanation belongs in speaker notes or a separate script.
+- Each figure needs a readable claim or interpretation nearby. Do not place a data chart or screenshot without telling the audience what it supports.
+- Keep evidence language proportional to the data. Use "表明", "显示", "支持", "初步验证" unless the research design truly warrants stronger causal language.
+- Prefer real study figures, platform screenshots, process diagrams, and source-backed visuals over decorative illustrations. Generated illustrations must clarify the topic, not fill empty space.
+- For a timed defense, keep the main deck focused. Repeated screenshots or highly similar data views should be merged, converted into a quick evidence page, or verbally skipped.
+
 ## Structure Checklist
 
 Make thesis chapters visible in the PPT structure:
@@ -43,12 +53,15 @@ Make thesis chapters visible in the PPT structure:
 - Remove meaningless generated illustrations. Visuals must serve a claim.
 - Keep table/body text readable, generally about 14 pt when space allows.
 - Ensure all text stays inside its box.
+- Ensure background cards, callout boxes, and shaded panels fully contain their title and body text. If explanatory text extends beyond the panel, enlarge the panel, shorten the copy, or reduce font size slightly.
 - Ensure image borders match image bounds; do not leave oversized frames.
 - Keep one page number only, bottom right.
 - Keep the school logo top right on every non-cover slide unless the template intentionally differs.
 - Use a consistent academic style: white background, restrained BNU blue, thin rules, stable spacing.
-- Keep the top title band white unless the deck intentionally uses a section-color system. Remove accidental pale green/gray title bands such as `F6FAF7`.
-- Remove small top-right section chips such as "第二部分 文献综述" or "第七部分 总结展望" when the slide title already carries the section logic. These chips compete with the logo and make the page look template-heavy.
+- Keep title-band and header backgrounds consistent across the deck. If most slides use a white title band, remove accidental tinted bands; if the deck intentionally uses section colors, apply them consistently.
+- Avoid redundant header labels. If the slide title already carries the section logic, remove small top-right section chips such as "第几部分 ..."; they compete with the logo and make the page look template-heavy.
+- Put section identity in the title hierarchy, not in extra floating labels, unless the whole template is designed around section labels.
+- Keep decorative lines, arrows, and connectors subordinate to content. Lines should connect objects clearly without crossing text, intruding into cards, or sitting on top of background panels.
 
 ## Common Defects To Check
 
@@ -58,13 +71,14 @@ Make thesis chapters visible in the PPT structure:
 - Left-heavy slides after removing right-side visuals.
 - Connector lines rendered above cards or text. Connectors should sit below nodes or be routed around labels.
 - Connector lines that slightly intrude into adjacent rectangles or large background panels. Even small intrusions can look like a line is covering the card. Move connectors fully into whitespace or remove nonessential connectors.
+- Header/title-band colors that vary unintentionally across slides.
+- Redundant section chips or labels in header areas after the same information has been folded into slide titles.
 - Reused figures without need.
 - Image frames larger than the pictures.
+- Background panels that are shorter than their text boxes, especially bottom explanatory cards and callout panels.
 - Table font too small or text clipped by cells.
 - Slide body language that sounds like a note to the presenter rather than a defense slide.
 - Conclusion statements that overclaim relative to the thesis evidence.
-- Inconsistent top title-band colors across slides.
-- Residual "第几部分 ..." section chips in the top-right area after section titles have been incorporated into slide titles.
 
 ## Validation Workflow
 
@@ -73,7 +87,7 @@ Make thesis chapters visible in the PPT structure:
 3. Check each slide for body horizontal and vertical centering.
 4. Check page numbers, logos, source lines, image borders, and connector layers.
 5. Check literature-review slides for source-backed logic: source -> finding -> gap -> thesis response.
-6. Check top-band colors and remove redundant top-right section chips.
+6. Check header/title-band consistency and remove redundant section chips.
 7. Run a final overlap, connector-intrusion, page-number, logo, and duplicate-reference check.
 8. Summarize changes concisely with the final PPT path.
 
