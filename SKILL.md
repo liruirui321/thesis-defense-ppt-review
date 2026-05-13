@@ -55,6 +55,7 @@ Make thesis chapters visible in the PPT structure:
 - Keep table/body text readable, generally about 14 pt when space allows.
 - Ensure all text stays inside its box.
 - Ensure background cards, callout boxes, and shaded panels fully contain their title and body text. If explanatory text extends beyond the panel, enlarge the panel, shorten the copy, or reduce font size slightly.
+- Check all long text carriers, not only independent text boxes. Auto-shapes with embedded text, conclusion bars, section summaries, and metric cards can also be too shallow and cause visible clipping or text escaping.
 - Ensure image borders match image bounds; do not leave oversized frames.
 - Keep one page number only, bottom right.
 - Keep the school logo top right on every non-cover slide unless the template intentionally differs.
@@ -77,6 +78,7 @@ Make thesis chapters visible in the PPT structure:
 - Reused figures without need.
 - Image frames larger than the pictures.
 - Background panels that are shorter than their text boxes, especially bottom explanatory cards and callout panels.
+- Long sentences placed in shallow bars or auto-shapes. Treat any 30+ character text in a very short shape as a visual risk even if python-pptx reports the text as embedded in the shape.
 - Table font too small or text clipped by cells.
 - Slide body language that sounds like a note to the presenter rather than a defense slide.
 - Conclusion statements that overclaim relative to the thesis evidence.
@@ -90,7 +92,7 @@ Make thesis chapters visible in the PPT structure:
 5. Check literature-review slides for source-backed logic: source -> finding -> gap -> thesis response.
 6. Check header/title-band consistency and remove redundant section chips.
 7. If a defect was fixed on one slide, run a whole-deck scan for that defect type and repair all true positives.
-8. Run a final overlap, card-text containment, connector-intrusion, page-number, logo, and duplicate-reference check.
+8. Run a final overlap, card-text containment, long-shallow-text, connector-intrusion, page-number, logo, and duplicate-reference check.
 9. Summarize changes concisely with the final PPT path.
 
 See `references/pptx-python-checks.md` for reusable python-pptx inspection snippets.
