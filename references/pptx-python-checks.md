@@ -119,3 +119,78 @@ for si, slide in enumerate(prs.slides, 1):
                 issues.append((si, "text_overlap", texts[i][1], texts[j][1]))
 print(issues)
 ```
+
+## Top Band And Section Chip Checks
+
+Flag non-white title bands and redundant top-right section chips such as "第七部分  总结展望".
+
+```python
+non_white_top_bands = []
+section_chips = []
+
+for si, slide in enumerate(prs.slides, 1):
+    for j, sh in enumerate(slide.shapes):
+        text = tx(sh)
+        l, t, w, h = [safe(sh, a) for a in ("left", "top", "width", "height")]
+        if None in (l, t, w, h):
+            continue
+        if "第" in text and "部分" in text and t < int(.7 * 914400):
+            section_chips.append((si, j, text))
+        try:
+            if (
+                t <= int(.05 * 914400)
+                and l <= int(.05 * 914400)
+                and w >= int(12.5 * 914400)
+                and int(.9 * 914400) <= h <= int(1.4 * 914400)
+            ):
+                rgb = str(sh.fill.fore_color.rgb) if sh.fill.type == 1 else None
+                if rgb != "FFFFFF":
+                    non_white_top_bands.append((si, j, rgb))
+        except Exception:
+            pass
+
+print("non_white_top_bands", non_white_top_bands)
+print("section_chips", section_chips)
+```
+
+## Connector Intrusion Checks
+
+Check lines against both text boxes and visible rectangles. For connector-like lines, zero-height shapes need a small hitbox because the rendered stroke still has thickness.
+
+```python
+def bbox(sh, pad=0):
+    l, t, w, h = [safe(sh, a) for a in ("left", "top", "width", "height")]
+    if None in (l, t, w, h):
+        return None
+    return l - pad, t - pad, l + w + pad, t + h + pad
+
+connector_issues = []
+
+for si, slide in enumerate(prs.slides, 1):
+    lines, rects, texts = [], [], []
+    for j, sh in enumerate(slide.shapes):
+        l, t, w, h = [safe(sh, a) for a in ("left", "top", "width", "height")]
+        if None in (l, t, w, h):
+            continue
+        y = t / 914400
+        xw = w / 914400
+        yh = h / 914400
+        text = tx(sh)
+        if sh.shape_type == 9 and 1.2 < y < 6.2:
+            lines.append((j, bbox(sh, int(.015 * 914400))))
+        if sh.shape_type == 1 and 1.2 < y < 6.2 and xw > .3 and yh > .08:
+            rects.append((j, bbox(sh), text[:35]))
+        if text and 1.2 < y < 6.2:
+            texts.append((j, bbox(sh), text[:35]))
+    for li, lr in lines:
+        if not lr:
+            continue
+        for ri, rr, rt in rects:
+            if rr and inter(lr, rr):
+                connector_issues.append((si, "line_rect", li, ri, rt))
+        for ti, tr, tt in texts:
+            if tr and inter(lr, tr):
+                connector_issues.append((si, "line_text", li, ti, tt))
+
+print("connector_issues", connector_issues)
+```
