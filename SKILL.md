@@ -47,6 +47,8 @@ Make thesis chapters visible in the PPT structure:
 - Keep one page number only, bottom right.
 - Keep the school logo top right on every non-cover slide unless the template intentionally differs.
 - Use a consistent academic style: white background, restrained BNU blue, thin rules, stable spacing.
+- Keep the top title band white unless the deck intentionally uses a section-color system. Remove accidental pale green/gray title bands such as `F6FAF7`.
+- Remove small top-right section chips such as "第二部分 文献综述" or "第七部分 总结展望" when the slide title already carries the section logic. These chips compete with the logo and make the page look template-heavy.
 
 ## Common Defects To Check
 
@@ -55,11 +57,14 @@ Make thesis chapters visible in the PPT structure:
 - Top-heavy slides whose body starts too close to the title line.
 - Left-heavy slides after removing right-side visuals.
 - Connector lines rendered above cards or text. Connectors should sit below nodes or be routed around labels.
+- Connector lines that slightly intrude into adjacent rectangles or large background panels. Even small intrusions can look like a line is covering the card. Move connectors fully into whitespace or remove nonessential connectors.
 - Reused figures without need.
 - Image frames larger than the pictures.
 - Table font too small or text clipped by cells.
 - Slide body language that sounds like a note to the presenter rather than a defense slide.
 - Conclusion statements that overclaim relative to the thesis evidence.
+- Inconsistent top title-band colors across slides.
+- Residual "第几部分 ..." section chips in the top-right area after section titles have been incorporated into slide titles.
 
 ## Validation Workflow
 
@@ -68,7 +73,8 @@ Make thesis chapters visible in the PPT structure:
 3. Check each slide for body horizontal and vertical centering.
 4. Check page numbers, logos, source lines, image borders, and connector layers.
 5. Check literature-review slides for source-backed logic: source -> finding -> gap -> thesis response.
-6. Run a final overlap and duplicate-reference check.
-7. Summarize changes concisely with the final PPT path.
+6. Check top-band colors and remove redundant top-right section chips.
+7. Run a final overlap, connector-intrusion, page-number, logo, and duplicate-reference check.
+8. Summarize changes concisely with the final PPT path.
 
 See `references/pptx-python-checks.md` for reusable python-pptx inspection snippets.
