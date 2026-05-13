@@ -240,3 +240,24 @@ for si, slide in enumerate(prs.slides, 1):
 
 print("containment_issues", containment_issues)
 ```
+
+## Long Shallow Text Risk Check
+
+Use this after fixing any text-overflow problem. It catches long text in shallow text boxes, auto-shapes, conclusion bars, and metric cards. These are often visible clipping risks even when no separate background rectangle exists.
+
+```python
+long_shallow = []
+
+for si, slide in enumerate(prs.slides, 1):
+    for j, sh in enumerate(slide.shapes):
+        text = tx(sh).replace("\n", " ")
+        l, t, w, h = [safe(sh, a) for a in ("left", "top", "width", "height")]
+        if None in (l, t, w, h):
+            continue
+        y = t / 914400
+        hh = h / 914400
+        if len(text) >= 34 and 1.1 < y < 6.5 and hh < .34:
+            long_shallow.append((si, j, round(l / 914400, 2), round(y, 2), round(w / 914400, 2), round(hh, 2), text[:80]))
+
+print("long_shallow_text", long_shallow)
+```
