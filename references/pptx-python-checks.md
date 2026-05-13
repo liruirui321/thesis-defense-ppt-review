@@ -197,7 +197,7 @@ print("connector_issues", connector_issues)
 
 ## Card Text Containment Spot Check
 
-Use this for slides with explanatory cards or callout panels. It finds text boxes that begin inside a large background rectangle but extend outside it. It may flag table-like layouts, so verify findings visually.
+Use this for slides with explanatory cards or callout panels. It checks independent text boxes against blank background rectangles. Text embedded directly in an auto-shape is treated as self-contained to avoid false positives in tables and diagrams. Verify findings visually.
 
 ```python
 def contains(outer, inner, margin=0):
@@ -218,9 +218,15 @@ for si, slide in enumerate(prs.slides, 1):
             continue
         x, y, ww, hh = l / 914400, t / 914400, w / 914400, h / 914400
         text = tx(sh)
-        if sh.shape_type == 1 and 1.1 < y < 6.6 and ww > 1 and hh > .5:
+        if sh.shape_type == 1 and 1.1 < y < 6.6 and ww > 1 and hh > .5 and not text:
             rects.append((j, rect(sh)))
-        if text and 1.1 < y < 6.6 and not text.startswith("参考：") and not text.isdigit():
+        if (
+            sh.shape_type == 17
+            and text
+            and 1.1 < y < 6.6
+            and not text.startswith("参考：")
+            and not text.isdigit()
+        ):
             texts.append((j, rect(sh), text[:45]))
     for ti, tr, tt in texts:
         for ri, rr in rects:
