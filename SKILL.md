@@ -31,6 +31,7 @@ Use this skill to turn a thesis-defense PPT into a formal, presentation-ready de
 - Keep evidence language proportional to the data. Use "表明", "显示", "支持", "初步验证" unless the research design truly warrants stronger causal language.
 - Prefer real study figures, platform screenshots, process diagrams, and source-backed visuals over decorative illustrations. Generated illustrations must clarify the topic, not fill empty space.
 - For a timed defense, keep the main deck focused. Repeated screenshots or highly similar data views should be merged, converted into a quick evidence page, or verbally skipped.
+- When a layout defect is found on one slide, scan the whole deck for the same defect class before reporting completion. Typical defect classes include text escaping cards, duplicate references, inconsistent title bands, connector intrusions, missing logos, duplicate page numbers, and off-center body groups.
 
 ## Structure Checklist
 
@@ -88,7 +89,8 @@ Make thesis chapters visible in the PPT structure:
 4. Check page numbers, logos, source lines, image borders, and connector layers.
 5. Check literature-review slides for source-backed logic: source -> finding -> gap -> thesis response.
 6. Check header/title-band consistency and remove redundant section chips.
-7. Run a final overlap, connector-intrusion, page-number, logo, and duplicate-reference check.
-8. Summarize changes concisely with the final PPT path.
+7. If a defect was fixed on one slide, run a whole-deck scan for that defect type and repair all true positives.
+8. Run a final overlap, card-text containment, connector-intrusion, page-number, logo, and duplicate-reference check.
+9. Summarize changes concisely with the final PPT path.
 
 See `references/pptx-python-checks.md` for reusable python-pptx inspection snippets.
