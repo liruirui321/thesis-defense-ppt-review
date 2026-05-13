@@ -194,3 +194,43 @@ for si, slide in enumerate(prs.slides, 1):
 
 print("connector_issues", connector_issues)
 ```
+
+## Card Text Containment Spot Check
+
+Use this for slides with explanatory cards or callout panels. It finds text boxes that begin inside a large background rectangle but extend outside it. It may flag table-like layouts, so verify findings visually.
+
+```python
+def contains(outer, inner, margin=0):
+    return (
+        outer[0] - margin <= inner[0]
+        and outer[1] - margin <= inner[1]
+        and outer[2] + margin >= inner[2]
+        and outer[3] + margin >= inner[3]
+    )
+
+containment_issues = []
+
+for si, slide in enumerate(prs.slides, 1):
+    rects, texts = [], []
+    for j, sh in enumerate(slide.shapes):
+        l, t, w, h = [safe(sh, a) for a in ("left", "top", "width", "height")]
+        if None in (l, t, w, h):
+            continue
+        x, y, ww, hh = l / 914400, t / 914400, w / 914400, h / 914400
+        text = tx(sh)
+        if sh.shape_type == 1 and 1.1 < y < 6.6 and ww > 1 and hh > .5:
+            rects.append((j, rect(sh)))
+        if text and 1.1 < y < 6.6 and not text.startswith("参考：") and not text.isdigit():
+            texts.append((j, rect(sh), text[:45]))
+    for ti, tr, tt in texts:
+        for ri, rr in rects:
+            if (
+                rr[0] - int(.03 * 914400) <= tr[0] <= rr[2] + int(.03 * 914400)
+                and rr[1] - int(.03 * 914400) <= tr[1] <= rr[3] + int(.03 * 914400)
+            ):
+                if not contains(rr, tr, int(.03 * 914400)):
+                    containment_issues.append((si, ti, ri, tt))
+                break
+
+print("containment_issues", containment_issues)
+```
