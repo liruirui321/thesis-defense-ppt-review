@@ -31,6 +31,11 @@ Use this skill to turn a thesis-defense PPT into a formal, presentation-ready de
 - Keep evidence language proportional to the data. Use "表明", "显示", "支持", "初步验证" unless the research design truly warrants stronger causal language.
 - Prefer real study figures, platform screenshots, process diagrams, and source-backed visuals over decorative illustrations. Generated illustrations must clarify the topic, not fill empty space.
 - For a timed defense, keep the main deck focused. Repeated screenshots or highly similar data views should be merged, converted into a quick evidence page, or verbally skipped.
+- Keep the introduction short. For a thesis defense, the introduction should usually move from policy/background -> concrete problem -> research content/questions in about 4-5 slides. Merge or remove standalone "technology comparison" slides when the same point is already explained by a concrete problem scenario or research-content slide.
+- Use concrete tasks to motivate a platform only when they fit the platform's actual affordances. For data-oriented OJ/LLM assessment platforms, prefer data analysis, rule checking, modeling, threshold judgment, or structured decision tasks over purely hands-on craft or engineering-build activities.
+- When using an external real-world task example for a platform slide, turn it into a bridge: real task -> why traditional teaching/evaluation struggles -> how the platform design responds. Do not leave the example as a decorative case.
+- Express platform value as "traditional difficulty -> corresponding platform design" when the slide's purpose is to justify the platform. For data-oriented OJ/LLM platforms this may mean: hard to author data tasks -> LLM-assisted structured item generation; hard to verify process/results -> OJ deterministic checks; hard to give individualized feedback -> LLM feedback scaffold; hard to diagnose learning paths -> process analytics and ability profiles.
+- Research-content slides must match the thesis text. Prefer the thesis's stated research questions, research contents, chapter mapping, and RQ labels over generic slogans or invented platform goals.
 - When a layout defect is found on one slide, scan the whole deck for the same defect class before reporting completion. Typical defect classes include text escaping cards, duplicate references, inconsistent title bands, connector intrusions, missing logos, duplicate page numbers, and off-center body groups.
 
 ## Structure Checklist
@@ -67,6 +72,9 @@ Make thesis chapters visible in the PPT structure:
 
 ## Common Defects To Check
 
+- Overlong introduction sections that repeat the same "why this platform" argument across multiple slides.
+- Concrete task examples that do not naturally demonstrate the platform's core advantages, especially when a platform slide uses an example unrelated to the system's actual data, evaluation, or workflow capabilities.
+- Research-content slides that paraphrase the user's intention but no longer match the thesis's formal RQ/research-content wording.
 - Duplicate page numbers, especially old template numbers plus new bottom-right numbers.
 - Duplicate references on the same slide. Keep one bottom source line.
 - Top-heavy slides whose body starts too close to the title line.
